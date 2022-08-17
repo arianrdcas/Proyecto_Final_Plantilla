@@ -1,12 +1,12 @@
 import React, { useContext } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useHistory } from "react-router-dom";
 import logo from '../assets/images/logo/logo.png';
 import { Context } from "../store/appContext";
 
 const Menu = () => {
 
     const {store, actions}=useContext(Context)
-   
+    const history = useHistory()
     const location = useLocation();
 
     return (
@@ -30,9 +30,9 @@ const Menu = () => {
                             <span className="icon-bar" />
                             <span className="icon-bar" />
                             </button>
-                            <a className="navbar-brand" href="index.html">
+                            <Link className="navbar-brand" to="/">
                             <img src={logo} alt="logo" /> 
-                            </a>
+                            </Link>
                         </div>
                         {/*/.navbar-header */}
                         {/* Collect the nav links, forms, and other content for toggling */}

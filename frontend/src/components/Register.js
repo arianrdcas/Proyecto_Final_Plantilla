@@ -5,11 +5,7 @@ const Register = () => {
 
     const{actions}=useContext(Context);    
 
-    /* const [name, setName] = useState("");
-    const [password, setPassword] = useState("");
-    const [email, setEmail] = useState(""); */
-
-    const [state, setState] = useState ({
+    const [dataUser, setDataUser] = useState ({
         nombre : '',
         email : '',
         password : '',
@@ -17,22 +13,18 @@ const Register = () => {
         
     })  
 
-
-    const handleChange = e => {
-        setState({
-            ...state,
+    const handleInputChange = (e) => {
+        setDataUser({
+            ...dataUser,
             [e.target.name] : e.target.value
         })
     }
-
-
+        
     const enviarDatos = (e) => {
         e.preventDefault ();
-        console.log("Enviando formulario");
-        //console.log(e.target.nombre.value);
         let hasError = false
         if(e.target.nombre.value === "") { 
-            setState(prevState => {
+            setDataUser(prevState => {
                 return {
                     ...prevState,
                     error: {
@@ -45,7 +37,7 @@ const Register = () => {
             })
             hasError = true;
         } else {
-            setState(prevState => {
+            setDataUser(prevState => {
                 delete prevState.error?.nombre;
                 return {
                     ...prevState, 
@@ -53,7 +45,7 @@ const Register = () => {
             })
         } 
         if(e.target.email.value === "") { 
-            setState(prevState => {
+            setDataUser(prevState => {
                 return {
                     ...prevState,
                     error: {
@@ -66,7 +58,7 @@ const Register = () => {
             })
             hasError = true;
         } else {
-            setState(prevState => {
+            setDataUser(prevState => {
                 delete prevState.error?.nombre;
                 return {
                     ...prevState, 
@@ -74,7 +66,7 @@ const Register = () => {
             })
         } 
         if (e.target.password.value === "") {
-            setState(prevState => {
+            setDataUser(prevState => {
                 return {
                     ...prevState,
                     error: {
@@ -87,7 +79,7 @@ const Register = () => {
             })
             hasError = true;
         } else {
-            setState(prevState => {
+            setDataUser(prevState => {
                 delete prevState.error?.password;
                 return {
                     ...prevState, 
@@ -95,24 +87,17 @@ const Register = () => {
             })
         }  
         
-        /*if (!hasError == false){ 
-            console.log("tengo error")
-
-            return;
-        }*/
         if (hasError) return;
-        //console.log('enviando datos...' + state.nombre + ' ' + state.email + ' ' + state.password)
 
-        actions.register(state)
-        setState({
+        actions.register(dataUser)
+        console.log(dataUser)
+        setDataUser({
             nombre:"",
             email:"",
             password:""
         })
     
     }
-    
-        
     
     return (  
         <>
@@ -140,10 +125,10 @@ const Register = () => {
                                 className="form-control"
                                 placeholder="Introduzca su nombre"
                                 name="nombre"
-                                value={state.nombre}
-                                onChange={handleChange}
+                                value={dataUser.nombre}
+                                onChange={handleInputChange}
                             />
-                            {!!state.error && state.error.nombre ? state.error.nombre.msg : ""} 
+                            {!!dataUser.error && dataUser.error.nombre ? dataUser.error.nombre.msg : ""} 
                             <br/>
 
                             <label>Email :</label>
@@ -152,10 +137,10 @@ const Register = () => {
                                 className="form-control"
                                 placeholder="Introduzca su email"
                                 name="email"
-                                value={state.email}
-                                onChange={handleChange}
+                                value={dataUser.email}
+                                onChange={handleInputChange}
                             />
-                            {!!state.error && state.error.email ? state.error.email.msg : ""} 
+                            {!!dataUser.error && dataUser.error.email ? dataUser.error.email.msg : ""} 
                             <br/>
 
                             <label>Password :</label>
@@ -164,10 +149,10 @@ const Register = () => {
                                 className="form-control"
                                 placeholder="Introduzca su password"
                                 name="password"
-                                value={state.password}
-                                onChange={handleChange}
+                                value={dataUser.password}
+                                onChange={handleInputChange}
                             />
-                            {!!state.error && state.error.password ? state.error.password.msg : ""} 
+                            {!!dataUser.error && dataUser.error.password ? dataUser.error.password.msg : ""} 
                             <br/>
                             
                             <button
@@ -175,7 +160,6 @@ const Register = () => {
                             className="btn btn-default pull-right"
                             type="submit"
                             value="Submit"
-                            //onClick={registrarse}
                         >
                             Enviar
                         </button>

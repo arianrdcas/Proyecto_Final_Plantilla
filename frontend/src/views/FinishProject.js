@@ -143,9 +143,9 @@ const FinishProject = () =>{
                 </div>
                 {/*/.project-details*/}
                 <div className="project-btn text-center">
-                    <a href="project.html" className="project-view">
+                    <Link to="/verproyecto" className="project-view">
                     view all
-                    </a>
+                    </Link>
                 </div>
                 {/*/.project-btn*/}
                 </div>

@@ -13,13 +13,14 @@ const Project = () => {
   const { store, actions } = useContext(Context);
   const history = useHistory();
 
-  useEffect(() => {
+ /*  useEffect(() => {
     if (!store.isAuth) history.push("/");
     //actions.getProfile();
-  }, []);
+  }, []); */
 
   return (
     <>
+    
       {/*about-part start*/}
       <section className="about-part project-part">
         <div className="container">
@@ -51,8 +52,8 @@ const Project = () => {
       </section>
       {/*/.about-part*/}
       {/*about-part end*/}
-      <FinishProject />
       <StartNow />
+      <FinishProject />
       <Footer />
     </>
   );

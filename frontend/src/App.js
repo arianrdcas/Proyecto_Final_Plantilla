@@ -14,6 +14,9 @@ import ViewGProyecto from './views/ViewGProyecto';
 import ViewGestionar from './views/ViewGestionar';
 import HeaderStart from "./components/HeaderStart";
 import Menu from "./components/Menu";
+import FormNewProject from "./views/Form";
+import Footer from "./components/Footer";
+import VerProyecto from "./views/VerProyecto";
 
 function App (props) {
 
@@ -31,8 +34,10 @@ function App (props) {
                 <Route exact path='/contact' component={ViewContact}/>
                 <Route exact path='/gservice' component={ViewGServicio}/>
                 <Route exact path='/gproyecto' component={ViewGProyecto}/>
-                <Route exact path='/gestionar' component={ViewGestionar}/>
+                <Route exact path='/form' component={FormNewProject}/>
+                <Route exact path='/verproyecto' component={VerProyecto}/>
             </Switch>
+            <Footer/>
         </BrowserRouter>
     );
 }

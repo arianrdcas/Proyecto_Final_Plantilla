@@ -1,78 +1,65 @@
-import React, { useState, useEffect } from 'react';
-import APIService from '../servicio/APIService';
+import React, { useContext, useState } from "react";
+import { Context } from '../store/appContext'
+import "../style/form.css";
 
+const FormNewProject = () => {
 
-function Form(props) {
+    const{actions}=useContext(Context); 
 
-    //console.log(props);
+    const [data, setData] = useState ({
+        proyecto : '',
+        descripcion : '',
+        autor : '',  
+    })
+     
+    const {handleChange} = actions;
 
-    const [title, setTitle] = useState(props.servicio.title)
-    const [description, setDescripcion] = useState(props.servicio.description)
-
-    const updateServicio = () => {
-        //console.log(props.servicio.id)
-        APIService.UpdateServicio(props.servicio.id, {title, description})
-        .then(response => console.log(response))
-        .catch(error => console.log(error))
+    const enviarForm = (e) => {
+        e.preventDefault ();
+        //console.log("Enviando formulario");
+        //console.log(data.proyecto + " " + data.descripcion + " " + data.autor);
+        
     }
-
-    const insertServicio = (servicio) => {
-
-        console.log("estoy aquí en insertar")
-        console.log(title)
-
-        APIService.InsertServicio({title, description})
-        .then(response => console.log(response))
-        .catch(error => console.log(error))
-    }
-
     return (
-        <div>
-            {props.servicio ? (
+        <>
+            <div className="container">
+                <h1>Proyecto Nuevo</h1>
+                <form autoComplete="off"  onSubmit={enviarForm} style={{ padding: 25 }} method="post">
+                <label>
+                    Nombre del Proyecto:
+                </label>
+                <input
+                    type="text"
+                    className="form-control"
+                    name="proyecto"
+                    //value={data.proyecto}
+                    onChange={handleChange}
+                />
+                <label>
+                    Descripcion del Proyecto:
+                </label>
+                <textarea
+                    className="form-control" 
+                    name="descripcion"
+                    //value={data.descripcion}
+                    onChange={handleChange} 
+                />
 
-                <div className = "mb-3">
+                <label>
+                    Autor:
+                </label>
+                <input type="text"
+                    className="form-control" 
+                    name="autor"
+                    //value={data.autor}
+                    onChange={handleChange}
+                />
 
-                    <label htmlFor = "title" className ="form-label"> Titulo</label>
+                <button type="submit">Enviar Proyecto</button>
+                </form>
+            </div>
+        </>
+    );
+};
 
-                    <input type = "text" className ="form-control" 
-
-                    value = {title}
-                    
-                    placeholder = "Por favor coloque el titulo"
-                        onChange = {(e) => setTitle(e.target.value)}
-                    />
-                    
-                    <label htmlFor = "description" className ="form-label"> Descripcion</label>
-
-                    <textarea
-                    rows = "5"
-                    value = {description}
-                    className ="form-control" 
-                    
-                    placeholder = "Por favor coloque una descripcion"
-                        onChange = {(e) => setDescripcion(e.target.value)}
-                    />
-
-                    {
-                        props.servicio.id ? <button
-                        onClick = {updateServicio}
-                        className = "btn btn-success mt-3"
-                        > Actualizar</button>
-                        :
-
-                        <button
-                        onClick = {insertServicio}
-                        className = "btn btn-success mt-3"
-                        > Insertar</button>
-
-                    }
-
-                </div> 
-
-            ):null}
-
-        </div>
-    )
-}
-
-export default Form
+export default FormNewProject;
