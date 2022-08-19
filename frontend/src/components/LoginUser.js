@@ -7,7 +7,7 @@ function LoginUser() {
 
   const { handleChange, handleLogin } = actions;
 
-  const { nombre, password, error } = store;
+  const { name, password, error } = store;
 
   return (
     <>
@@ -57,10 +57,10 @@ function LoginUser() {
                 <label>Name :</label>
                 <input
                   type="text"
-                  name="nombre"
+                  name="name"
                   className="form-control"
                   placeholder="username"
-                  value={nombre}
+                  value={name}
                   onChange={handleChange}
                   autoComplete="off"
                 />

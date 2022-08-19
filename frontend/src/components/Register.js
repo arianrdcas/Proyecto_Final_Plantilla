@@ -3,10 +3,11 @@ import { Context } from '../store/appContext'
 
 const Register = () => {
 
-    const{actions}=useContext(Context);    
-
-    const [dataUser, setDataUser] = useState ({
-        nombre : '',
+    const{store, actions}=useContext(Context);    
+    const { name, emailuser, password, error } = store;
+    const { handleChange, register } = actions;
+    /* const [dataUser, setDataUser] = useState ({
+        name : '',
         email : '',
         password : '',
         error : null,
@@ -23,13 +24,13 @@ const Register = () => {
     const enviarDatos = (e) => {
         e.preventDefault ();
         let hasError = false
-        if(e.target.nombre.value === "") { 
+        if(e.target.name.value === "") { 
             setDataUser(prevState => {
                 return {
                     ...prevState,
                     error: {
                         ...prevState.error,
-                        nombre:{
+                        name:{
                             msg : "Por favor, introduzca su nombre",
                         } 
                     }
@@ -90,15 +91,16 @@ const Register = () => {
         if (hasError) return;
 
         actions.register(dataUser)
-        console.log(dataUser)
+        //console.log(dataUser)
         setDataUser({
-            nombre:"",
+            name:"",
             email:"",
             password:""
-        })
+        }) 
     
-    }
+    }*/
     
+
     return (  
         <>
             <div className="modal fade bs-example-modal-lg" tabIndex={-1} role="dialog" aria-labelledby="myLargeModalLabel">
@@ -118,17 +120,17 @@ const Register = () => {
                         <h4 className="modal-title" id="myLargeModalLabel">
                         Registrarse
                         </h4>
-                        <form className="lg-frm" autoComplete="off" onSubmit={enviarDatos} style={{ padding: 25 }} method="post" >
+                        <form className="lg-frm" autoComplete="off"  onSubmit={register}  style={{ padding: 25 }} method="post" >
                             <label>Nombre :</label>
                             <input
                                 type="text"
                                 className="form-control"
                                 placeholder="Introduzca su nombre"
-                                name="nombre"
-                                value={dataUser.nombre}
-                                onChange={handleInputChange}
+                                name="name"
+                                value={name}
+                                onChange={handleChange}
                             />
-                            {!!dataUser.error && dataUser.error.nombre ? dataUser.error.nombre.msg : ""} 
+                            {!!error && error.nombre ? error.nombre.msg : ""}  
                             <br/>
 
                             <label>Email :</label>
@@ -136,11 +138,11 @@ const Register = () => {
                                 type="email"
                                 className="form-control"
                                 placeholder="Introduzca su email"
-                                name="email"
-                                value={dataUser.email}
-                                onChange={handleInputChange}
+                                name="emailuser"
+                                value={emailuser}
+                                onChange={handleChange}
                             />
-                            {!!dataUser.error && dataUser.error.email ? dataUser.error.email.msg : ""} 
+                            {!!error && error.emailuser ? error.emailuser.msg : ""} 
                             <br/>
 
                             <label>Password :</label>
@@ -149,10 +151,10 @@ const Register = () => {
                                 className="form-control"
                                 placeholder="Introduzca su password"
                                 name="password"
-                                value={dataUser.password}
-                                onChange={handleInputChange}
+                                value={password}
+                                onChange={handleChange}
                             />
-                            {!!dataUser.error && dataUser.error.password ? dataUser.error.password.msg : ""} 
+                            {!!error && error.password ? error.password.msg : ""} 
                             <br/>
                             
                             <button
@@ -160,6 +162,7 @@ const Register = () => {
                             className="btn btn-default pull-right"
                             type="submit"
                             value="Submit"
+                            
                         >
                             Enviar
                         </button>

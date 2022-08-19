@@ -54,7 +54,7 @@ def register():
 
     if not user: return jsonify({"msg": "El registro falló!!!"}),400
 
-    return jsonify(data), 200
+    return jsonify(), 200
 
 
 
@@ -93,6 +93,14 @@ def proyecto():
     if not proyecto: return jsonify({"msg": "El registro falló!!!"}),400
 
     return jsonify(), 200 
+
+@app.route('/api/proyectos/delete/<int:idproyecto>', methods=['DELETE'])
+def delete_proyecto(idproyecto):
+
+    proyecto = Project.query.get(idproyecto)
+    proyecto.delete()
+    
+    return jsonify({ "status": True, "msg": "Proyecto elminado"}), 200
 
 
 if __name__ == '__main__':

@@ -1,12 +1,12 @@
 const getState = ({ getStore, getActions, setStore }) => {
   return {
     store: {
-      nombre: "",
-      email: "",
+      name: "",
+      emailuser: "",
       password: "",
-      erro: null,
+      error: null,
       isAuth: false,
-      proyecto: "",
+      nombre: "",
       descripcion: "",
       autor: "",
       currentUser: [],
@@ -24,17 +24,19 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      register: (dataUser) => {
-        //datos
-        //console.log(dataUser)
-        fetch("http://127.0.0.1:5000/api/register", {
-          method: "POST",
-          headers: { "Content-type": "application/json" },
-          body: JSON.stringify(dataUser), //datos
+      register: () => {
+        const { name, emailuser, password } = getStore();
+        const dataUser={name: name, emailuser: emailuser, password: password}
+        console.log(dataUser)
+        fetch("http://127.0.0.1:5000/api/users/register", {
+          method: 'POST',
+          body: JSON.stringify(dataUser), 
+          headers: { "Content-type": "application/json" }
         })
           .then((resp) => resp.json())
           .then((response) => console.log(response))
-          .catch((error) => console.error(error));
+          .catch((error) => console.error(error)); 
+          
       },
 
       handleChange: (e) => {
@@ -46,10 +48,10 @@ const getState = ({ getStore, getActions, setStore }) => {
       handleLogin: async (e) => {
         e.preventDefault();
         try{
-            const { nombre, password } = getStore();
-            const datos = { nombre: nombre, password: password };
+            const { name, password } = getStore();
+            const datos = { name: name, password: password };
             console.log(datos)
-            const resp = await fetch("http://127.0.0.1:5000/api/login", {
+            const resp = await fetch("http://127.0.0.1:5000/api/users/login", {
                 method: "POST",
                 body: JSON.stringify(datos),
                     headers: {
@@ -79,7 +81,22 @@ const getState = ({ getStore, getActions, setStore }) => {
           error: error.message
         });
       }
-    }
+    },
+
+    sendForm: () => {
+      const { nombre, descripcion, autor } = getStore();
+      const dataForm={nombre: nombre, descripcion: descripcion, autor: autor}
+      console.log(dataForm)
+      fetch("http://127.0.0.1:5000/api/proyectos/register", {
+        method: 'POST',
+        body: JSON.stringify(dataForm), 
+        headers: { "Content-type": "application/json" }
+      })
+        .then((resp) => resp.json())
+        .then((response) => console.log(response))
+        .catch((error) => console.error(error)); 
+        
+    },
 
     }
 };
