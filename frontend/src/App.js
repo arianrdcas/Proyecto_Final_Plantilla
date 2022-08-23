@@ -17,6 +17,7 @@ import Menu from "./components/Menu";
 import FormNewProject from "./views/Form";
 import Footer from "./components/Footer";
 import VerProyecto from "./views/VerProyecto";
+import { NotFound } from "./views/NotFound";
 
 function App (props) {
 
@@ -36,6 +37,7 @@ function App (props) {
                 <Route exact path='/gproyecto' component={ViewGProyecto}/>
                 <Route exact path='/form' component={FormNewProject}/>
                 <Route exact path='/verproyecto' component={VerProyecto}/>
+                <Route component={NotFound} />
             </Switch>
             <Footer/>
         </BrowserRouter>
