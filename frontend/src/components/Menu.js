@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+//import { useEffect } from "react";
 import { Link, useLocation, useHistory } from "react-router-dom";
 import logo from '../assets/images/logo/logo.png';
 import { Context } from "../store/appContext";
@@ -8,6 +9,10 @@ const Menu = () => {
     const {store, actions}=useContext(Context)
     const history = useHistory()
     const location = useLocation();
+
+    /* useEffect(() => {
+        if(store.isAuth) history.push('/');
+    }, []); */
 
     return (
         <>
@@ -42,25 +47,25 @@ const Menu = () => {
                         >
                             <ul className="nav navbar-nav navbar-right">
                             <li className="nav-item">
-                                <Link className={"nav-link " + (location.pathname === '/' ? "active" : "")} to= "/" >Home</Link>
+                                <Link className="nav-link active" to= "/" >Home</Link>
                             </li>
                             <li>
-                                <Link className={"nav-link " + (location.pathname === "/about" ? "active" : "")} to= "/about" >About</Link>
+                                <Link className="nav-link active " to= "/about" >About</Link>
                             </li>
                             <li>
-                                <Link className={"nav-link " + (location.pathname === "/service" ? "active" : "")} to="/service">Service</Link>
+                                <Link className="nav-link active" to="/service">Service</Link>
                             </li>
                             <li>
-                                <Link className={"nav-link " + (location.pathname === "/project" ? "active" : "")} to="/project">Project</Link>
+                                <Link className="nav-link active "  to="/project">Project</Link>
                             </li>
                             <li>
-                                <Link className={"nav-link " + (location.pathname === "/team" ? "active" : "")} to="/team">Team</Link>
+                                <Link className="nav-link active "  to="/team">Team</Link>
                             </li>
                             <li>
-                                <Link className={"nav-link " + (location.pathname === "/blog" ? "active" : "")} to="/blog">Blog</Link>
+                                <Link className="nav-link active"  to="/blog">Blog</Link>
                             </li>
                             <li>
-                                <Link className={"nav-link " + (location.pathname === "/contact" ? "active" : "")} to="/contact">Contact</Link>
+                                <Link className="nav-link active" to="/contact">Contact</Link>
                             </li>
                             <li>
                                 <a href="/#">

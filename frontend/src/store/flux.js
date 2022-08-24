@@ -15,7 +15,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 
     actions: {
       isAuthenticated: () => {
-        //console.log("verificanco usuario");
+        console.log("verificanco usuario");
         if (sessionStorage.getItem("isAuth")) {
           setStore({
             isAuth: sessionStorage.getItem("isAuth"),

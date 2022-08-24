@@ -161,11 +161,9 @@ const Register = () => {
                             type="button"
                             className="btn btn-default pull-right"
                             type="submit"
-                            value="Submit"
-                            
-                        >
+                            value="Submit">
                             Enviar
-                        </button>
+                            </button>
                         </form>
                     </div>
                     </div>
