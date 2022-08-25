@@ -3,7 +3,7 @@ import React from 'react'
 //import APIService  from '../servicio/APIService'
 
 
-function SevicioList(props) {
+/* function SevicioList(props) { */
 
     /* const editServicio = (servicio) => {
         props.editServicio(servicio)
@@ -14,15 +14,13 @@ function SevicioList(props) {
         .then(() => props.deleteServicio(servicio))
     } */
 
-    return (
+    /* return (
         <div>
 
-            {props.servicios && props.servicios.map(servicio =>{
+            
                 return(
 
                     <div key = {servicio.id} >
-
-
                         <img
                             src={servicio.image}
                             alt="image de servicio"
@@ -31,8 +29,6 @@ function SevicioList(props) {
                         <h3> {servicio.title} </h3>
 
                         <p>{servicio.description}</p>
-
-                        
 
 
                         <div className = "row">
@@ -55,10 +51,10 @@ function SevicioList(props) {
 
                     </div>  
                 )
-            })}
+            )}
 
         </div>
-    )
-}
+    ) */
+/* }
 
-export default SevicioList
+export default SevicioList */

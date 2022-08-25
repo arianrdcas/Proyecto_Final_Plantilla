@@ -1,17 +1,22 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Context } from "../store/appContext";
 
 
 
 const VerProyecto = () => {
 
-    const {store}=useContext(Context)
+  const {store, actions}=useContext(Context)
+
+  useEffect(() => {
+    actions.fetchProyecto();
+  }, []);
+
 
   return (
     <>
         <h1>VerProyecto</h1>
-        <p>{store.proyecto}</p>
-    </>
+        <p>{store.nombre}</p>
+        </>
   )
 }
 

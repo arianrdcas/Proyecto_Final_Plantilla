@@ -11,11 +11,14 @@ const getState = ({ getStore, getActions, setStore }) => {
       autor: "",
       currentUser: [],
       profile: null,
+      proyectos:{nombre:"",
+                autor:"",
+              descripcion:""}
     },
 
     actions: {
       isAuthenticated: () => {
-        console.log("verificanco usuario");
+        //console.log("verificanco usuario");
         if (sessionStorage.getItem("isAuth")) {
           setStore({
             isAuth: sessionStorage.getItem("isAuth"),
@@ -24,7 +27,8 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      register: () => {
+      register: (e) => {
+        e.preventDefault();
         const { name, emailuser, password } = getStore();
         const dataUser = {
           name: name,
@@ -34,8 +38,9 @@ const getState = ({ getStore, getActions, setStore }) => {
         console.log(dataUser);
         fetch("http://127.0.0.1:5000/api/users/register", {
           method: "POST",
-          body: JSON.stringify(dataUser),
           headers: { "Content-type": "application/json" },
+          body: JSON.stringify(dataUser),
+          
         })
           .then((resp) => resp.json())
           .then((response) => console.log(response))
@@ -86,7 +91,8 @@ const getState = ({ getStore, getActions, setStore }) => {
         }
       },
 
-      sendForm: () => {
+      sendForm: (e) => {
+        e.preventDefault();
         const { nombre, descripcion, autor } = getStore();
         const dataForm = {
           nombre: nombre,
@@ -103,6 +109,13 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((response) => console.log(response))
           .catch((error) => console.error(error));
       },
+      fetchProyecto: (e) => {
+        fetch("http://127.0.0.1:5000/api/proyectos")
+            .then((resp) => resp.json())
+            .then((response) => console.log(response));
+            
+            
+      }, 
     },
   };
 };

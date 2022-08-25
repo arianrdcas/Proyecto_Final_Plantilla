@@ -4,7 +4,7 @@ import Footer from "../components/Footer";
 import StartNow from "./StarNow";
 
 
-import SevicioList from "./SevicioList";
+//import SevicioList from "./SevicioList";
 import Form from "./Form";
 import HeaderStartAuthen from "../components/HeaderStartAuthen";
 import MenuAuthen from "../components/MenuAuthen";
@@ -82,9 +82,9 @@ const ViewGServicio = () => {
           </div>
         </div>  
 
-          <SevicioList servicios = {servicios} editServicio = {editServicio} deleteServicio = {deleteServicio} />
+          {/* <SevicioList servicios = {servicios} editServicio = {editServicio} deleteServicio = {deleteServicio} />
 
-          {editedServicio ? <Form servicio = {editedServicio}  updateServicio = {updateServicio} insertedServicio = {insertedServicio}/> : null }
+          {editedServicio ? <Form servicio = {editedServicio}  updateServicio = {updateServicio} insertedServicio = {insertedServicio}/> : null } */}
 
       </div>
 

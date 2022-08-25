@@ -1,9 +1,16 @@
-import React from "react";
+import React, { useContext, useState } from "react";
+import { Context } from '../store/appContext'
 import Login from "./LoginUser";
 import Register from "./Register";
 
 
 const HeaderStart = () =>{
+
+    const{actions,store}=useContext(Context); 
+
+    const isAuth = store.isAuth
+    //const Registro_Login = 
+
     return(
         <>
             {/*header start*/}
@@ -29,7 +36,7 @@ const HeaderStart = () =>{
                 </div>
                 {/*/.header-left */}
                 <div className="header-right pull-right">
-                    <ul>
+                    <ul>{ !isAuth ?
                     <li className="reg">
                         <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm">
                             Log in 
@@ -40,8 +47,13 @@ const HeaderStart = () =>{
                         </a>
                         <Login/>
                         <Register/>
-                        
                     </li>
+                    :
+                    <button type="button" className="btn btn-danger">
+                        Logout
+                    </button>
+                    } 
+                        {/*  */}
                     {/*/li */}
                     <li>
                         <div className="social-icon">

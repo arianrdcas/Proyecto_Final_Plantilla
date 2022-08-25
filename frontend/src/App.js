@@ -1,6 +1,6 @@
 
 import { BrowserRouter, Switch,Route } from "react-router-dom";
-import injectContext from './store/appContext';
+
 
 import Layout from './views/Layout';
 import ViewAbout from './views/ViewAbout';
@@ -18,6 +18,7 @@ import FormNewProject from "./views/Form";
 import Footer from "./components/Footer";
 import VerProyecto from "./views/VerProyecto";
 import { NotFound } from "./views/NotFound";
+import injectContext from './store/appContext';
 
 function App (props) {
 

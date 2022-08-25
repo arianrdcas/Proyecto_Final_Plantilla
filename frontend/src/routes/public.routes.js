@@ -29,7 +29,7 @@ const PublicRoutes = () => {
             <PublicRoute exact path='/gservice' component={ViewGServicio}/>
             <PublicRoute exact path='/gproyecto' component={ViewGProyecto}/>
             <PublicRoute exact path='/gestionar' component={ViewGestionar}/>
-            {/* Redirect when the url is incorrect */}
+            Redirect when the url is incorrect 
             <Redirect path='**' to='/'/>
         </Switch>
     );
