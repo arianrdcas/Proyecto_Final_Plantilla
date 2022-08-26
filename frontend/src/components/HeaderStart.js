@@ -1,4 +1,5 @@
 import React, { useContext, useState } from "react";
+import { useHistory } from "react-router";
 import { Context } from '../store/appContext'
 import Login from "./LoginUser";
 import Register from "./Register";
@@ -7,10 +8,14 @@ import Register from "./Register";
 const HeaderStart = () =>{
 
     const{actions,store}=useContext(Context); 
-
+    const history = useHistory()
     const isAuth = store.isAuth
     //const Registro_Login = 
 
+
+    const logout = () =>{
+        actions.logout(history)
+      };
     return(
         <>
             {/*header start*/}
@@ -49,7 +54,7 @@ const HeaderStart = () =>{
                         <Register/>
                     </li>
                     :
-                    <button type="button" className="btn btn-danger">
+                    <button onClick={logout} type="button" className="btn btn-danger">
                         Logout
                     </button>
                     } 

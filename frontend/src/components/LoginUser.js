@@ -1,10 +1,11 @@
 import React, { useContext } from "react";
+import { useHistory } from "react-router";
 
 import { Context } from "../store/appContext";
 
 function LoginUser() {
   const { store, actions } = useContext(Context);
-
+  const history = useHistory()
   const { handleChange, handleLogin } = actions;
 
   const { name, password, error } = store;
@@ -50,7 +51,7 @@ function LoginUser() {
               )}
               <form
                 className="sm-frm"
-                onSubmit={handleLogin}
+                onSubmit={(e) => handleLogin(e,history)}
                 style={{ padding: 30 }}
                 method="post"
               >

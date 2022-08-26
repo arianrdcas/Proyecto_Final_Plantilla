@@ -1,4 +1,4 @@
-import React, {useEffect,useState} from "react";
+/* import React, {useEffect,useState} from "react";
 
 import Footer from "../components/Footer";
 import StartNow from "./StarNow";
@@ -84,9 +84,9 @@ const ViewGServicio = () => {
 
           {/* <SevicioList servicios = {servicios} editServicio = {editServicio} deleteServicio = {deleteServicio} />
 
-          {editedServicio ? <Form servicio = {editedServicio}  updateServicio = {updateServicio} insertedServicio = {insertedServicio}/> : null } */}
+          {editedServicio ? <Form servicio = {editedServicio}  updateServicio = {updateServicio} insertedServicio = {insertedServicio}/> : null } 
 
-      </div>
+      /* </div>
 
 
       <StartNow/>
@@ -96,4 +96,4 @@ const ViewGServicio = () => {
   );
 }
 
-export default ViewGServicio;
+export default ViewGServicio; */ 

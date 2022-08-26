@@ -80,14 +80,14 @@ def register():
 
 """ -------------------Ruta Login-------------------- """
 
-@app.route("/api/login", methods=['POST'])
+@app.route("/api/users/login", methods=['POST'])
 def login():
     name = request.json.get('name')
-    emailuser = request.json.get('emailuser')
+    
     password = request.json.get('password')
 
     if not name: return jsonify({"msg": "El nombre  es requerido"}), 400
-    if not emailuser: return jsonify({"msg": "El email es requerido"}), 400
+    
     if not password: return jsonify({"msg": "La contraseña es requerida"}), 400
 
     user = User.query.filter_by(name=name).first()
@@ -148,7 +148,7 @@ def delete_proyecto(idproyecto):
 
 
 
-"""--------RUTAS ABOUT--------"""
+"""--------RUTAS MENU--------"""
 
 @app.route('/api/about', methods=['GET'])
 @jwt_required()
@@ -156,6 +156,27 @@ def about():
     idusuario = get_jwt_identity()
     user = User.query.get(idusuario)
     return jsonify(user.serialize()),200
+
+""" @app.route('/api/service', methods=['GET'])
+@jwt_required()
+def service():
+    idusuario = get_jwt_identity()
+    user = User.query.get(idusuario)
+    return jsonify(user.serialize()),200
+
+@app.route('/api/project', methods=['GET'])
+@jwt_required()
+def project():
+    idusuario = get_jwt_identity()
+    user = User.query.get(idusuario)
+    return jsonify(user.serialize()),200
+
+@app.route('/api/team', methods=['GET'])
+@jwt_required()
+def team():
+    idusuario = get_jwt_identity()
+    user = User.query.get(idusuario)
+    return jsonify(user.serialize()),200 """
 
 
 if __name__ == '__main__':

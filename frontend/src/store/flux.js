@@ -11,9 +11,7 @@ const getState = ({ getStore, getActions, setStore }) => {
       autor: "",
       currentUser: [],
       profile: null,
-      proyectos:{nombre:"",
-                autor:"",
-              descripcion:""}
+      proyectos:[]
     },
 
     actions: {
@@ -49,8 +47,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
       handleChange: (e) => {
         setStore({
-          [e.target.name]: e.target.value,
-        });
+          [e.target.name]: e.target.value,  
+        })
+        
       },
 
       handleLogin: async (e) => {
@@ -89,6 +88,7 @@ const getState = ({ getStore, getActions, setStore }) => {
             error: error.message,
           });
         }
+        //history.push("/");
       },
 
       sendForm: (e) => {
@@ -109,12 +109,39 @@ const getState = ({ getStore, getActions, setStore }) => {
           .then((response) => console.log(response))
           .catch((error) => console.error(error));
       },
-      fetchProyecto: (e) => {
-        fetch("http://127.0.0.1:5000/api/proyectos")
+      fetchProyecto: () => {
+        fetch("http://127.0.0.1:5000/api/proyectos",{
+          method:'GET',
+          headers :{
+            'Content-Type' : 'application/json'
+          }})
             .then((resp) => resp.json())
-            .then((response) => console.log(response));
+            .then((response) => {
+              //console.log(response)
+              setStore({proyectos:response
+              })
+            })
+            .catch(error => console.log(error));
             
-            
+        }, 
+
+        logout:(history)=>{
+          sessionStorage.clear()
+          setStore({isAuth:false, currentUser:[]})
+          history.push("/")
+        },
+
+      delete_proyecto: ( ) =>{
+        const {proyectos} = getStore()
+        fetch(`http://127.0.0.1:5000/api/proyectos/delete/${proyectos.idproyecto}`, {
+          method: 'DELETE',
+        })
+        .then((result) =>{
+          result.json()
+          .then((resp)=>{
+            console.warn(resp)
+          })
+        })
       }, 
     },
   };
