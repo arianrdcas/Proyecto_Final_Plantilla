@@ -6,8 +6,8 @@ const VerProyecto = () => {
   const { store, actions } = useContext(Context);
 
 
-  const [modificar, setModificar] = useState(true)
-  const [eliminar, seteliminar] = useState(true)
+  const [botonActivo, setBotonActivo] = useState(false);
+  
 
 
   useEffect(() => {
@@ -15,19 +15,35 @@ const VerProyecto = () => {
   }, []);
 
   
-const {delete_proyecto} = actions
-  
-const getItem = () =>{
-  console.log()
+const [checkBoxSelected, setCheckBoxSelected]=useState([]);
+
+const handleChangeCheckBox=e=>{
+  console.log(e.target.value);
+  var auxiliar=null;
+  if(checkBoxSelected.includes(e.target.value)){
+    auxiliar=checkBoxSelected.filter(elemento=>elemento!==e.target.value);
+
+  }else{
+    auxiliar=checkBoxSelected.concat(e.target.value);
+  }
+  setCheckBoxSelected(auxiliar);
+
+  if(auxiliar.length>0){
+    setBotonActivo(true);
+
+  }else{
+    setBotonActivo(false)
+  }
 }
+  
 
   return (
     <>
     <ul className="container"> 
       <li>
         <h1 >Proyectos Creados</h1> 
-        <button className="btn btn-success" disabled={true} >Modificar</button>
-        <button className="btn btn-danger" disabled={true} onClick={(e) => delete_proyecto(e)}>Eliminar</button>
+        <button className="btn btn-success" disabled={!botonActivo} >Modificar</button>
+        <button className="btn btn-danger" disabled={!botonActivo} >Eliminar</button>
       </li>
     </ul>
       <div className="container" >
@@ -45,7 +61,7 @@ const getItem = () =>{
                 <tr >
                   <td >
                     <div className="form-check">
-                      <input className="form-check-input" onClick={(e) => getItem(e,proyecto.idproyecto)} type="checkbox" value="" id="flexCheckChecked"/>
+                      <input className="form-check-input"  type="checkbox" value={proyecto.idproyecto} onChange={handleChangeCheckBox}  id="flexCheckChecked"/>
                     </div>
                   </td>
                   <td>{proyecto.nombre}</td>
