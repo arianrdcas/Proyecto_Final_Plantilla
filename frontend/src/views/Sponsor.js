@@ -54,7 +54,6 @@ const Sponsor = () =>{
             {/*/.clients*/}
             {/*clients end*/}
             </>
-
     )
 }
 export default Sponsor; 

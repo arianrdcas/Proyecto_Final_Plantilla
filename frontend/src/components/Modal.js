@@ -8,7 +8,7 @@ const Modal = ({children, estado, cambiarEstado}) => {
             <Overlay>
                 <ContenedorModel>
                     <EncabezadoModal>
-                        <h3>Titulo</h3>
+                        <h3>Instrucciones</h3>
                     </EncabezadoModal>
                     <BotonCerrar onClick={() => cambiarEstado(false)}>
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
@@ -46,6 +46,7 @@ const ContenedorModel = styled.div `
     border-radius: 5px;
     box-shadow: rgba(100,100,111, 0.2) 0px 7px 29 px 0px;
     padding: 20px;
+    
 `;
 
 const EncabezadoModal = styled.div ` 

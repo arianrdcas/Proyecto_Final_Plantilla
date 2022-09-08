@@ -1,11 +1,24 @@
+/* import Modal from '../components/Modal';
 import React, { useContext } from "react";
-import { Context } from '../store/appContext'
+import { useHistory } from "react-router";
+import { Context } from '../store/appContext';
+import styled from "styled-components";
+import "../style/form.css";
 
 const Register = () => {
 
-    const{store, actions}=useContext(Context);    
-    const { name, emailuser, password, error } = store;
-    const { handleChange, register } = actions;
+    const{store, actions}=useContext(Context); 
+
+    const history = useHistory()   
+
+    const { name, emailuser, password, error, modal} = store;
+
+    console.log(modal);
+
+    const { handleChange, register } = actions; */
+
+
+
     /* const [dataUser, setDataUser] = useState ({
         name : '',
         email : '',
@@ -101,8 +114,18 @@ const Register = () => {
     }*/
     
 
-    return (  
+   /*  return (  
         <>
+        
+               <Modal 
+                estado={modal}
+                //cambiarEstado={cambiarEstadoModal}
+                >
+                <Contenido>
+                    <p>El proyecto se ha insertado satisfactoriamente</p>
+                    <button className="btn btn-primary" >Aceptar</button>
+                </Contenido>
+            </Modal>
             <div className="modal fade bs-example-modal-lg" tabIndex={-1} role="dialog" aria-labelledby="myLargeModalLabel">
                 <div className="modal-dialog modal-lg" role="document">
                     <div className="modal-content">
@@ -118,9 +141,9 @@ const Register = () => {
                         </span>
                         </button>
                         <h4 className="modal-title" id="myLargeModalLabel">
-                        Registrarse
+                        Registrarseteeeeeeeeeeeee
                         </h4>
-                        <form className="lg-frm" autoComplete="off"  onSubmit={register}  style={{ padding: 25 }} method="post" >
+                        <form className="lg-frm" autoComplete="off"  onSubmit={(e) => register(e, history)}  style={{ padding: 25 }} method="post" >
                             <label>Nombre :</label>
                             <input
                                 type="text"
@@ -131,7 +154,6 @@ const Register = () => {
                                 onChange={handleChange}
                             />
                             {!!error && error.nombre ? error.nombre.msg : ""}  
-                            <br/>
 
                             <label>Email :</label>
                             <input
@@ -143,7 +165,6 @@ const Register = () => {
                                 onChange={handleChange}
                             />
                             {!!error && error.emailuser ? error.emailuser.msg : ""} 
-                            <br/>
 
                             <label>Password :</label>
                             <input
@@ -155,14 +176,13 @@ const Register = () => {
                                 onChange={handleChange}
                             />
                             {!!error && error.password ? error.password.msg : ""} 
-                            <br/>
                             
                             <button
-                            type="button"
-                            className="btn btn-default pull-right"
-                            type="submit"
-                            value="Submit">
-                            Enviar
+                                type="button"
+                                className="btn btn-default pull-right"
+                                type="submit"
+                                value="Submit">
+                                Enviar
                             </button>
                         </form>
                     </div>
@@ -177,3 +197,19 @@ const Register = () => {
 }
 
 export default Register;
+
+const Contenido = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	h1 {
+		font-size: 42px;
+		font-weight: 700;
+		margin-bottom: 10px;
+	}
+	p {
+		font-size: 18px;
+		margin-bottom: 20px;
+	}
+	
+`; */

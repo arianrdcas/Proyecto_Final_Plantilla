@@ -50,22 +50,7 @@ const Menu = () => {
                                 <Link className="nav-link active" to= "/" >Home</Link>
                             </li>
                             <li>
-                                <Link className="nav-link active " to= "/about" >About</Link>
-                            </li>
-                            <li>
-                                <Link className="nav-link active" to="/service">Service</Link>
-                            </li>
-                            <li>
                                 <Link className="nav-link active "  to="/project">Project</Link>
-                            </li>
-                            <li>
-                                <Link className="nav-link active "  to="/team">Team</Link>
-                            </li>
-                            <li>
-                                <Link className="nav-link active"  to="/blog">Blog</Link>
-                            </li>
-                            <li>
-                                <Link className="nav-link active" to="/contact">Contact</Link>
                             </li>
                             <li>
                                 <a href="/#">
@@ -94,7 +79,6 @@ const Menu = () => {
             {/*/#menu*/}
             {/*menu end*/}
             </>
-
     )
 }
 export default Menu; 

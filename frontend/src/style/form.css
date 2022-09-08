@@ -20,5 +20,34 @@ strong{
     
 }
 table{
-    margin-top: 20px;
+    margin-top: 50px;
+    margin-bottom: 100px;
+}
+
+.padre{
+    display: flex;
+    justify-content: center;
+    margin-top:35px;
+    
+}
+
+.hijo{
+    margin-top:35px;
+    margin-right: 10px;
+    margin-left: 30px;
+}
+
+h4{
+    text-transform: none;
+    margin: 10px;
+}
+
+.contenedor{
+    display: flex;
+    justify-content: center;
+}
+
+.containerr{
+    display: flex;
+    justify-content: center;
 }

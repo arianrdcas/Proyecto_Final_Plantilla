@@ -1,5 +1,6 @@
 import React, { useContext, useState } from "react";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 import { Context } from '../store/appContext'
 import Login from "./LoginUser";
 import Register from "./Register";
@@ -8,14 +9,17 @@ import Register from "./Register";
 const HeaderStart = () =>{
 
     const{actions,store}=useContext(Context); 
-    const history = useHistory()
-    const isAuth = store.isAuth
-    //const Registro_Login = 
 
+    const{registro} = actions;
+
+    const history = useHistory()
+
+    const isAuth = store.isAuth
 
     const logout = () =>{
         actions.logout(history)
-      };
+    };
+
     return(
         <>
             {/*header start*/}
@@ -41,28 +45,38 @@ const HeaderStart = () =>{
                 </div>
                 {/*/.header-left */}
                 <div className="header-right pull-right">
+                
                     <ul>{ !isAuth ?
-                    <li className="reg">
-                        <a href="#" data-toggle="modal" data-target=".bs-example-modal-sm">
-                            Log in 
-                        </a>
-                        /
-                        <a href="#" data-toggle="modal" data-target=".bs-example-modal-lg">
-                            Register
-                        </a>
-                        <Login/>
-                        <Register/>
-                    </li>
-                    :
-                    <button onClick={logout} type="button" className="btn btn-danger">
-                        Logout
-                    </button>
-                    } 
-                        {/*  */}
-                    {/*/li */}
-                    <li>
+                        <li className="reg">
+                            <Link to='/loginuser'  data-target=".bs-example-modal-sm">
+                                Log in 
+                            </Link>
+                            /
+                            <Link to='/registro'  data-target=".bs-example-modal-lg">
+                                Register
+                            </Link>
+                        </li>
+                        :
+                            <Link onClick={logout} type="button" className="reg">
+                                Logout
+                            </Link>
+                        } 
+                            {/*  */}
+                        {/*/li */}
+                        <li>
                         <div className="social-icon">
                         <ul>
+                            <li>
+                                {
+                                    !!store.currentUser && (
+                                    <>
+                                        <a><i className="fa-solid fa-user"/></a>
+                                        <a><h3 className="user">{store?.currentUser?.user?.name}</h3></a>
+                                    
+                                    </>
+                                    )
+                                }
+                            </li>
                             <li>
                             <a href="#">
                                 <i className="fa fa-facebook" />

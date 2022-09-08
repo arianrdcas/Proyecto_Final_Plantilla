@@ -49,13 +49,8 @@ def register():
     password = request.json.get('password')
     emailuser = request.json.get('emailuser')
 
-    if not name: return jsonify({"msg": "El nombre es requerido"}), 400
-    if not password: return jsonify({"msg": "La contraseña es requerida"}), 400
-    if not emailuser: return jsonify({"msg": "La contraseña es requerida"}), 400
-
-
     user = User.query.filter_by(emailuser=emailuser).first()
-    if user: return jsonify({"msg": "El usuario ya existe!!!"}),400
+    if user: return jsonify({"msg": "Ya existe un usuario con el email insertado"}),400
 
     user = User()
     user.name = name
@@ -113,6 +108,16 @@ def get_proyectos():
 
     return jsonify(proyectos), 200
 
+
+@app.route("/api/proyecto/<int:idproyecto>", methods=['GET'])
+def get_proyecto(idproyecto):
+    proyecto = Project.query.filter_by(idproyecto=idproyecto)
+    proyecto = list(map(lambda proyecto: proyecto.serialize(), proyecto))
+    return jsonify(proyecto), 200
+
+
+
+
 @app.route("/api/proyectos/register", methods=['POST'])
 def proyecto():
     nombre = request.json.get('nombre')
@@ -138,14 +143,43 @@ def proyecto():
 
     return jsonify(), 200 
 
+@app.route("/api/proyectos/editar/<int:idproyecto>", methods=['PUT'])
+def editar(idproyecto):
+
+    nombre = request.json.get('nombre')
+    descripcion = request.json.get('descripcion')
+    autor = request.json.get('autor')
+
+    if not nombre: return jsonify({"msg": "El nombre del proyecto es requerido"}), 400
+    if not descripcion: return jsonify({"msg": "La descripcion es requerida"}), 400
+    if not autor: return jsonify({"msg": "El autor es requerido"}), 400
+
+    proyecto = Project.query.get(idproyecto)
+    proyecto.nombre = nombre
+    proyecto.descripcion = descripcion
+    proyecto.autor = autor
+
+    proyecto.update()
+
+    return jsonify(), 200  
+
+
 @app.route('/api/proyectos/delete/<int:idproyecto>', methods=['DELETE'])
 def delete_proyecto(idproyecto):
 
     proyecto = Project.query.get(idproyecto)
     proyecto.delete()
-    
-    return jsonify({ "status": True, "msg": "Proyecto elminado"}), 200
 
+    if not proyecto: return jsonify({"msg": "No se pudo eliminar el proyecto!"}),400
+    
+    #return jsonify({ "status": True, "msg": "Proyecto elminado"}), 200
+
+    #return jsonify(), 200
+
+    proyectos = Project.query.all()
+    proyectos = list(map(lambda proyectos: proyectos.serialize(), proyectos))
+
+    return jsonify(proyectos), 200
 
 
 """--------RUTAS MENU--------"""
@@ -157,26 +191,7 @@ def about():
     user = User.query.get(idusuario)
     return jsonify(user.serialize()),200
 
-""" @app.route('/api/service', methods=['GET'])
-@jwt_required()
-def service():
-    idusuario = get_jwt_identity()
-    user = User.query.get(idusuario)
-    return jsonify(user.serialize()),200
 
-@app.route('/api/project', methods=['GET'])
-@jwt_required()
-def project():
-    idusuario = get_jwt_identity()
-    user = User.query.get(idusuario)
-    return jsonify(user.serialize()),200
-
-@app.route('/api/team', methods=['GET'])
-@jwt_required()
-def team():
-    idusuario = get_jwt_identity()
-    user = User.query.get(idusuario)
-    return jsonify(user.serialize()),200 """
 
 
 if __name__ == '__main__':

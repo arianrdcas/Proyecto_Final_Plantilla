@@ -75,7 +75,6 @@ const PricingTable = () =>{
                 </div>  
             </section>
             </>
-
     )
 }
 export default PricingTable; 

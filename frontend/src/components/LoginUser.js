@@ -1,90 +1,78 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useHistory } from "react-router";
-
+import { Link } from "react-router-dom";
 import { Context } from "../store/appContext";
 
-function LoginUser() {
-  const { store, actions } = useContext(Context);
-  const history = useHistory()
-  const { handleChange, handleLogin } = actions;
 
-  const { name, password, error } = store;
+
+ const LoginUser = () => {
+  const { actions, store } = useContext(Context);
+
+  const { name, password} = store;
+  const history = useHistory();
+
+  //const { modal } = store;
+
+  const { handleChange, handleLogin } = actions;
 
   return (
     <>
-      {/* small modal */}
-      <div
-        className="modal fade bs-example-modal-sm"
-        tabIndex={-1}
-        role="dialog"
-        aria-labelledby="mySmallModalLabel"
-      >
-        <div className="modal-dialog modal-sm" role="document">
-          <div className="modal-content">
-            <div className="modal-header">
-              <button
-                type="button"
-                className="close"
-                data-dismiss="modal"
-                aria-label="Close"
-              >
-                <span aria-hidden="true">
-                  <i className="fa fa-close" />
-                </span>
-              </button>
-              <h4 className="modal-title mt-5" id="mySmallModalLabel">
-                Sign In
-              </h4>
-              {!!store.error && (
-                <div
-                  className="alert alert-danger alert-dismissible fade show"
-                  role="alert"
-                >
-                  <strong>Error:</strong> {store.error}.
-                  <button
-                    type="button"
-                    className="btn-close"
-                    data-bs-dismiss="alert"
-                    aria-label="Close"
-                  ></button>
-                </div>
+      <div className="contenedor">
+        <form
+          autoComplete="off"
+          style={{ padding: 85 }}
+          onSubmit={(e) => handleLogin(e, history)}
+          method="post"
+        >
+          <label>Nombre del Usuario:</label>
+          <input
+            style={{ width: 300 }}
+            type="text"
+            className="form-control"
+            name="name"
+            value={name}
+            onChange={handleChange}
+          />
+          <>
+            {!name.trim() ? (
+              <p className="text-danger">Por favor, inserte su nombre</p>
+            ) : (
+              ""
+            )}
+          </>
+          <div className="mb-3">
+            <label htmlFor="exampleInputPassword1" className="form-label">
+              Password
+            </label>
+            <input
+              style={{ width: 300 }}
+              type="password"
+              className="form-control"
+              name="password"
+              value={password}
+              onChange={handleChange}
+            />
+            <>
+              {!password.trim() ? (
+                <p className="text-danger">Por favor, inserte su contraseña</p>
+              ) : (
+                ""
               )}
-              <form
-                className="sm-frm"
-                onSubmit={(e) => handleLogin(e,history)}
-                style={{ padding: 30 }}
-                method="post"
-              >
-                <label>Name :</label>
-                <input
-                  type="text"
-                  name="name"
-                  className="form-control"
-                  placeholder="username"
-                  value={name}
-                  onChange={handleChange}
-                  autoComplete="off"
-                />
-                <label>Password :</label>
-                <input
-                  type="password"
-                  name="password"
-                  className="form-control"
-                  placeholder="password"
-                  value={password}
-                  onChange={handleChange}
-                  autoComplete="off"
-                />
-                <button className="btn btn-default" type="submit">
-                  Enviar
-                </button>
-              </form>
-            </div>
+            </>
           </div>
-        </div>
+          <button
+            type="submit"
+            className="btn btn-primary"
+            disabled={name && password ? false : true}
+          >
+            Login
+          </button>
+        </form>
       </div>
     </>
   );
-}
-
+};
 export default LoginUser;
+ 
+
+

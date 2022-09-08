@@ -8,20 +8,8 @@ let ruta_image = "../assets/images/service/";
 
 const Services = () =>{
 
-    const [servicios, setServices] = useState([]);
+    const [servicios] = useState([]);
 
-    /* useEffect(()=>{
-        fetch('http://localhost:5000/listAllservices',{
-            'methods':'GET',
-            headers : {
-            'Content-Type':'application/json'
-        }
-        })
-        .then(response => response.json())
-        .then(response => setServices(response))
-        .catch(error => console.log(error))
-    
-    },[]) */
 
     return (
         <>

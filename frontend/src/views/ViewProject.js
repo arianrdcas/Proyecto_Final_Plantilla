@@ -1,22 +1,18 @@
 import React, { useContext, useEffect } from "react";
 import { useHistory } from "react-router";
 import { Context } from "../store/appContext";
-
-import Footer from "../components/Footer";
-
-import FinishProject from "./FinishProject";
 import StartNow from "./StarNow";
 import { Link } from "react-router-dom";
 
 const Project = () => {
 
-  const { store, actions } = useContext(Context);
+  const { store } = useContext(Context);
   const history = useHistory();
 
- /*  useEffect(() => {
+  useEffect(() => {
     if (!store.isAuth) history.push("/");
     //actions.getProfile();
-  }, []); */
+  }, []); 
 
   return (
     <>
@@ -35,7 +31,7 @@ const Project = () => {
                       <span>//</span>
                     </li>
                     <li>
-                      <Link to="/project">project</Link>
+                      <Link to="/project">Proyecto</Link>
                     </li>
                   </ol>
                   {/*/.breadcrumb*/}
@@ -53,8 +49,6 @@ const Project = () => {
       {/*/.about-part*/}
       {/*about-part end*/}
       <StartNow />
-      <FinishProject />
-      <Footer />
     </>
   );
 };

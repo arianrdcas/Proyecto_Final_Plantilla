@@ -156,9 +156,25 @@ html,body{
     transition: .5s;
 	
 }
+
+.user{
+	font-size:17px;
+}
+
 .header-right li a:hover{
 	color:#7370d8;
 }
+
+.contenedor{
+	display: flex;
+	justify-content: center;
+}
+
+.form-control{
+	width: 300px;
+}
+
+
 .reg a {
     margin-right: 5px;
     margin-left: 5px;
@@ -1546,6 +1562,7 @@ a:active.learn-btn{
 	background: #f5f5fb;
 	color: #5549af;
     border: 1px solid #f5f5fb;
+	
 }
 /*-------------------------------------
 		16. Footer
@@ -1805,6 +1822,8 @@ a:active.learn-btn{
 /* breadcrumb */
 .breadcrumb {
     background-color:transparent;
+	
+
 }
 .breadcrumb>li+li:before {
     padding: 0 0px;
@@ -1826,6 +1845,8 @@ a:active.learn-btn{
 	margin-right: 4px;
 	font-size:20px;
 }
+
+
 
 /*-------------------------------------
 		ii. about-history

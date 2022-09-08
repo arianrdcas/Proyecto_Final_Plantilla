@@ -1,9 +1,11 @@
-import React, {useState} from "react";
+import React, {useContext, useState} from "react";
 import Modal from '../components/Modal';
 import styled from 'styled-components';
+import { Context } from "../store/appContext";
 
 const Consult = () =>{
 
+    const{store, actions}=useContext(Context);
     const[estadoModal, cambiarEstadoModal] = useState(false);
 
     return (
@@ -33,29 +35,30 @@ const Consult = () =>{
                         <div className="col-sm-12">
                         <div className="single-slide-item-content">
                             <h2>
-                            Consult Your <br /> Business With Us
+                           Consulta tus Proyectos <br /> de negocios con nosotros
                             </h2>
                             <p>
-                            We are the unique Consultancy Farm for your business
-                            solution, That is ready to take challenge and knockout
-                            your business problems.
+
+                            Somos la única consultora que apoya tu negocio
+                            y que está lista para tomar el desafío de darle publicidad a tus resultados.
+                            
                             </p>
-                            <button type="button" onClick={() => cambiarEstadoModal(!estadoModal) } className="slide-btn">
-                            get started
+                             <button type="button" onClick={() => cambiarEstadoModal(!estadoModal) } className="slide-btn"> 
+                                Instrucciones
                             </button>
-                            <Modal
+                             <Modal
                                 estado={estadoModal}
                                 cambiarEstado={cambiarEstadoModal}
                             >
                                 <Contenido>
-                                    <h1>Ventana Modal</h1>
-                                    <p>Reutilizable con opcion de personalizacion</p>
-                                    <button className="btn btn-primary">Aceptar</button>
+                                    <h6>1- Regístrese para poder acceseder al sitio.</h6>
+                                    <h6>2- Una vez registrado, podrá loguearse.</h6>
+                                    <h6>3- Luego de loguearse, usted podrá crear un proyecto.</h6>
+                                    <h6>4- En la opción Project, encontrará dos botones: Nuevo Proyecto y Ver Proyectos</h6>
+                                    <h6>5- Por último para salir del sitio deberá cerrar sesión.</h6>
+                                    <button className="btn btn-primary" onClick={() => cambiarEstadoModal(!estadoModal) }>Aceptar</button>
                                 </Contenido>
-                            </Modal>
-                            <button type="button" className="slide-btn">
-                            explore more
-                            </button>
+                            </Modal> 
                         </div>
                         {/* /.single-slide-item-content*/}
                         </div>
@@ -68,61 +71,12 @@ const Consult = () =>{
                 {/* /.single-slide-item*/}
                 </div>
                 {/* /.item .active*/}
-                <div className="item">
-                <div className="single-slide-item slide-2">
-                    <div className="container">
-                    <div className="row">
-                        <div className="col-sm-12">
-                        <div className="single-slide-item-content">
-                            <h2>
-                            Consult Your <br /> Business
-                            </h2>
-                            <p>
-                            We are the unique Consultancy Farm for your business
-                            solution, That is ready to take challenge and knockout
-                            your business problems.
-                            </p>
-                            <button type="button" className="slide-btn">
-                            get started
-                            </button>
-                            <button
-                            type="button"
-                            className="slide-btn
-                                                    "
-                            >
-                            explore more
-                            </button>
-                        </div>
-                        {/* /.single-slide-item-content*/}
-                        </div>
-                        {/* /.col*/}
-                    </div>
-                    {/* /.row*/}
-                    </div>
-                    {/* /.container*/}
-                </div>
-                {/* /.single-slide-item*/}
-                </div>
+                
                 {/* /.item .active*/}
             </div>
             {/* /.carousel-inner*/}
             {/* Controls */}
-            <a
-                className="left carousel-control"
-                href="#carousel-example-generic"
-                role="button"
-                data-slide="prev"
-            >
-                <span className="lnr lnr-chevron-left" />
-            </a>
-            <a
-                className="right carousel-control"
-                href="#carousel-example-generic"
-                role="button"
-                data-slide="next"
-            >
-                <span className="lnr lnr-chevron-right" />
-            </a>
+            
             </div>
             {/* /.carousel*/}
         </section>
@@ -137,15 +91,12 @@ export default Consult;
 const Contenido = styled.div`
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	h1 {
-		font-size: 42px;
-		font-weight: 700;
-		margin-bottom: 10px;
-	}
-	p {
+    justify-content: center;
+	h6 {
 		font-size: 18px;
 		margin-bottom: 20px;
+        align-items: left;
+        text-transform: none;
 	}
 	
 `;

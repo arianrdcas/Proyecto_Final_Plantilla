@@ -11,7 +11,7 @@ const StartNow = () => {
             <div className="row">
               <div className="col-md-10 col-sm-8">
                 <div className="single-new-project">
-                  <h3>Want to start a new project with us? Let’s Start!</h3>
+                  <h3>¿Quieres iniciar un nuevo proyecto con nosotros? ¡Empecemos!</h3>
                 </div>
                 {/* /.single-new-project*/}
               </div>
@@ -19,7 +19,13 @@ const StartNow = () => {
               <div className="col-md-2 col-sm-4">
                 <div className="single-new-project">
                   <Link to="/form" className="slide-btn">
-                    start now
+                    Nuevo Proyecto
+                  </Link>
+                </div>
+
+                <div className=" prueba single-new-project" style={{ marginTop: 25 }}>
+                  <Link to="/verproyecto" className="slide-btn">
+                    Ver Proyectos
                   </Link>
                 </div>
                 {/* /.single-new-project*/}

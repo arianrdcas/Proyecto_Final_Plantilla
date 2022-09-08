@@ -2,20 +2,6 @@ import React from "react";
 
 const ConsultGestAuthen = () =>{
 
-    /* let user = JSON.parse(localStorage.getItem('user-info'))
-
-    const goToservice= () =>{
-        //console.log("estoy en service");
-        localStorage.clear();
-        window.location.href = '/gservice';
-    }
-
-    const goToproyecto = () => {
-        //console.log("estoy en proyecto");
-        localStorage.clear();
-        window.location.href = '/gproyecto';
-    }
- */
     return (
         <>
         {/* header-slider-area start */}

@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
+import { Context } from "../store/appContext";
 
 
 const CardWedo = (props) =>{
+
+    const { store, actions } = useContext(Context);
+
     return (
         <> 
             <div className="single-we-do-box text-center">
